@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <title>Sample Registration Page</title>
+    <link href="styles/bootstrap.css" rel="stylesheet">
+    <link href="styles/signin.css" rel="stylesheet">
+</head>
+<body>
+<div class="container" ng-controller="LaptopsCtrl">
+    <div class="alert alert-danger" ng-if="errorMessage">{{errorMessage}}</div>
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Laptop kaydet Batuhan</h2>
+        <input type="text" class="form-control" name="name" placeholder="name" ng-model="laptop.name" required autofocus>
+        <input type="text" class="form-control" name="manufacturer" placeholder="manufacturer" ng-model="laptop.manufacturer" required>
+        <input type="text" class="form-control" name="width" placeholder="width" ng-model="laptop.width">
+        <input type="text" class="form-control" name="weight" placeholder="weight" ng-model="laptop.weight">
+        <input type="text" class="form-control" name="height" placeholder="height" ng-model="laptop.height">
+        <input type="text" class="form-control" name="length" placeholder="length" ng-model="laptop.length">
+        <p><input ng-repeat="color in laptop.colorOptions track by $index" type='text' ng-model='laptop.colorOptions[$index]' placeholder='Color Options:'></p>
+        <button ng-click="addColor()">Add Color</button>
+        <p><input ng-repeat="asin in laptop.ASIN track by $index" type='text' ng-model='laptop.ASIN[$index]' placeholder='Asin:'></p>
+        <button ng-click="addFormField()">Add ASIN</button>
+        <p><input ng-repeat="upc in laptop.UPC track by $index" type='text' ng-model='laptop.UPC[$index]' placeholder='UPC:'></p>
+        <button ng-click="addUPC()">Add UPC</button>
+        <p><input ng-repeat="ean in laptop.EAN track by $index" type='text' ng-model='laptop.EAN[$index]' placeholder='EAN:'></p>
+        <button ng-click="addEAN()">Add EAN</button>
+        <p></p>
+        <label for="Entertainment">Entertainment:</label>
+        <input id="Entertainment" type="radio" ng-model="laptop.purpose" value="Entertainment" />
+        <label for="Work">Work:</label>
+        <input id="Work" type="radio" ng-model="laptop.purpose" value="Work" />
+        <label for="Game">Game:</label>
+        <input id="Game" type="radio" ng-model="laptop.purpose" value="Game" />
+        <label for="Custom">Custom:</label>
+        <input id="Custom" type="radio" ng-model="laptop.purpose" value="Custom" />
+        <input type="text" class="form-control" name="createDate" placeholder="createDate" ng-model="laptop.createDate">
+        <input type="text" class="form-control" name="releaseDate" placeholder="releaseDate" ng-model="laptop.releaseDate">
+        <input type="text" class="form-control" name="originalProductPageURL" placeholder="originalProductPageURL" ng-model="laptop.originalProductPageURL">
+        <h3 class="form-signin-heading">Display</h2>
+        <input type="text" class="form-control" name="Display Size" placeholder="Display Size" ng-model="laptop.features.display.size">
+        <input type="text" class="form-control" name="Display Resolution" placeholder="Display Resolution" ng-model="laptop.features.display.resolution">
+        <input type="text" class="form-control" name="Display Type" placeholder="Display Type" ng-model="laptop.features.display.type">
+        <input type="text" class="form-control" name="Display graphicCardManufacturer" placeholder="Display graphicCardManufacturer" ng-model="laptop.features.display.graphicCardManufacturer">
+        <input type="text" class="form-control" name="Display graphicCardModel" placeholder="Display graphicCardModel" ng-model="laptop.features.display.graphicCardModel">
+        <input type="text" class="form-control" name="Display graphicMemoryAccesibility" placeholder="Display graphicMemoryAccesibility" ng-model="laptop.features.display.graphicMemoryAccesibility">
+        <input type="text" class="form-control" name="Display extraFeatures" placeholder="Display extraFeatures" ng-model="laptop.features.display.extraFeatures">
+        <h3 class="form-signin-heading">Islemci</h2>
+        <input type="text" class="form-control" name="Processor processorManufacturer" placeholder="Processor processorManufacturer" ng-model="laptop.features.processor.processorManufacturer">
+        <input type="text" class="form-control" name="processor processorModel" placeholder="processor processorModel" ng-model="laptop.features.processor.processorModel">
+        <input type="text" class="form-control" name="processor processorSpeed" placeholder="processor processorSpeed" ng-model="laptop.features.processor.processorSpeed">
+        <input type="text" class="form-control" name="processor processorCore" placeholder="processor processorCore" ng-model="laptop.features.processor.processorCore">
+        <input type="text" class="form-control" name="processor extraFeatures" placeholder="processor extraFeatures" ng-model="laptop.features.processor.extraFeatures">
+        <h3 class="form-signin-heading">Batarya</h2>
+        <input type="text" class="form-control" name="Battery cellCount" placeholder="Battery cellCount" ng-model="laptop.features.battery.cellCount">
+        <input type="text" class="form-control" name="Battery chemistry" placeholder="Battery chemistry" ng-model="laptop.features.battery.chemistry">
+        <input type="text" class="form-control" name="Battery capacity" placeholder="Battery capacity" ng-model="laptop.features.battery.capacity">
+        <input type="text" class="form-control" name="Battery maxPower" placeholder="Battery maxPower" ng-model="laptop.features.battery.maxPower">
+        <input type="text" class="form-control" name="Battery extraFeatures" placeholder="Battery extraFeatures" ng-model="laptop.features.battery.extraFeatures">
+        <h3 class="form-signin-heading">Memory</h2>
+        <input type="text" class="form-control" name="Memory ram" placeholder="Memory ram" ng-model="laptop.features.memory.ram">
+        <input type="text" class="form-control" name="Memory ramCapacity" placeholder="Memory ramCapacity" ng-model="laptop.features.memory.ramCapacity">
+        <input type="text" class="form-control" name="Memory ramSpeed" placeholder="Memory ramSpeed" ng-model="laptop.features.memory.ramSpeed">
+        <input type="text" class="form-control" name="Memory ramType" placeholder="Memory ramType" ng-model="laptop.features.memory.ramType">
+        <input type="text" class="form-control" name="Memory ramMaxCapacity" placeholder="Memory ramMaxCapacity" ng-model="laptop.features.memory.ramMaxCapacity">
+        <input type="text" class="form-control" name="Memory ramHomeCount" placeholder="Memory ramHomeCount" ng-model="laptop.features.memory.ramHomeCount">
+        <input type="text" class="form-control" name="Memory extraFeatures" placeholder="Memory extraFeatures" ng-model="laptop.features.memory.extraFeatures">
+        <h3 class="form-signin-heading">Storage</h2>
+        <input type="text" class="form-control" name="Storage capacity" placeholder="Storage capacity" ng-model="laptop.features.storage.capacity">
+        <input type="text" class="form-control" name="Storage opticDriverType" placeholder="Storage opticDriverType" ng-model="laptop.features.storage.opticDriverType">
+        <input type="text" class="form-control" name="Storage extraFeatures" placeholder="Storage extraFeatures" ng-model="laptop.features.storage.extraFeatures">
+        <h3 class="form-signin-heading">Connectivity</h2>
+        <input type="text" class="form-control" name="Connectivity wifi" placeholder="Connectivity wifi" ng-model="laptop.features.memory.wifi">
+        <input type="text" class="form-control" name="connectivity bluetooth" placeholder="connectivity bluetooth" ng-model="laptop.features.connectivity.bluetooth">
+        <input type="text" class="form-control" name="connectivity ethernetTechnology" placeholder="connectivity ethernetTechnology" ng-model="laptop.features.connectivity.ethernetTechnology">
+        <input type="text" class="form-control" name="connectivity hdmi" placeholder="connectivity hdmi" ng-model="laptop.features.connectivity.hdmi">
+        <input type="text" class="form-control" name="connectivity vga" placeholder="connectivity vga" ng-model="laptop.features.connectivity.vga">
+        <input type="text" class="form-control" name="connectivity usb2" placeholder="connectivity usb2" ng-model="laptop.features.connectivity.usb2">
+        <input type="text" class="form-control" name="connectivity usb3" placeholder="connectivity usb3" ng-model="laptop.features.connectivity.usb3">
+        <input type="text" class="form-control" name="connectivity extraFeatures" placeholder="connectivity extraFeatures" ng-model="laptop.features.connectivity.extraFeatures">
+        <h3 class="form-signin-heading">Platform</h2>
+        <input type="text" class="form-control" name="platform operatingSystem" placeholder="platform operatingSystem" ng-model="laptop.features.platform.operatingSystem">
+        <input type="text" class="form-control" name="platform operatingSystemBits" placeholder="platform operatingSystemBits" ng-model="laptop.features.platform.operatingSystemBits">
+        <input type="text" class="form-control" name="platform extraFeatures" placeholder="platform extraFeatures" ng-model="laptop.features.platform.extraFeatures">
+        <h3 class="form-signin-heading">Helal olsun, Other</h2>
+        <input type="text" class="form-control" name="other includedAccesories" placeholder="other includedAccesories" ng-model="laptop.features.other.includedAccesories">
+        <input type="text" class="form-control" name="other sound" placeholder="other sound" ng-model="laptop.features.other.sound">
+        <input type="text" class="form-control" name="other webcam" placeholder="other webcam" ng-model="laptop.features.other.webcam">
+        <input type="text" class="form-control" name="other microphone" placeholder="other microphone" ng-model="laptop.features.other.microphone">
+        <input type="text" class="form-control" name="other extraFeatures" placeholder="other extraFeatures" ng-model="laptop.features.other.extraFeatures">
+        <p class="help-block"> {{ message }} </p>
+        <button class="btn btn-lg btn-primary btn-block" ng-click="register()">Register</button>
+    </form>
+</div> <!-- /container -->
+
+<!-- <script type="application/javascript" src="lib/angular/angular.min.js"></script>
+<script type="application/javascript" src="scripts/controllers/laptops.js"></script> -->
+</body>
+</html>
